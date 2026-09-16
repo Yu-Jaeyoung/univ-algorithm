@@ -3,14 +3,15 @@ package sort;
 import sort.basic.BubbleSort;
 import sort.basic.InsertionSort;
 import sort.basic.SelectionSort;
+import sort.common.MySorter;
 
-import static sort.MyList.print;
+import static sort.common.MyList.print;
 
 public class SortMain {
     public static void main(String[] args) {
         Integer[] intList = {8, 31, 48, 73, 3, 65, 20, 29, 11, 15};
 
-//        SelectionSort<Integer> sorter = new SelectionSort<>();
+//      SelectionSort<Integer> sorter = new SelectionSort<>();
         MySorter<Integer> sorter = new BubbleSort<>();
         sorter.sort(intList);
 
@@ -30,10 +31,9 @@ public class SortMain {
 
         print(stringList);
 
+        Integer[] insertsList = {9, 8, 31, 48, 73, 3, 65, 20, 29, 11, 15};
 
-        Integer[] inserrtsList = {9, 8, 31, 48, 73, 3, 65, 20, 29, 11, 15};
-
-//        SelectionSort<Integer> sorter = new SelectionSort<>();
+//      SelectionSort<Integer> sorter = new SelectionSort<>();
         MySorter<Integer> insertionSort = new InsertionSort<>();
         insertionSort.sort(intList);
 

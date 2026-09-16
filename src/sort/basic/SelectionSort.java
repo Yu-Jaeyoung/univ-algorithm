@@ -1,8 +1,8 @@
 package sort.basic;
 
-import sort.MySorter;
+import sort.common.MySorter;
 
-import static sort.MyList.swap;
+import static sort.common.MyList.swap;
 
 public class SelectionSort<E extends Comparable<E>> implements MySorter<E> {
 

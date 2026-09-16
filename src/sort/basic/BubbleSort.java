@@ -1,8 +1,8 @@
 package sort.basic;
 
-import sort.MySorter;
+import sort.common.MySorter;
 
-import static sort.MyList.*;
+import static sort.common.MyList.*;
 
 public class BubbleSort<E extends Comparable<E>> implements MySorter<E> {
 
