@@ -1,8 +1,13 @@
 package app.student;
 
+import search.basic.IterBinarySearch;
+import search.basic.SequentialSearch;
+import search.common.MySearcher;
 import sort.basic.InsertionSort;
 import sort.common.MyList;
 import sort.common.MySorter;
+
+import java.util.Comparator;
 
 import static sort.common.MyList.*;
 
@@ -24,5 +29,20 @@ public class StudentMain {
         MySorter<Student> sorter = new InsertionSort<>();
         sorter.sort(studentList);
         println(studentList);
+
+        MySearcher<Student> searcher = new IterBinarySearch<>();
+
+        Comparator<Student> comparator =
+                Comparator.comparing(Student::name);
+
+        Student student = new Student("Harry", 22, 4, 4.1);
+
+        int index = searcher.search(studentList, student, comparator);
+
+        if (index < 0) {
+            System.out.println("검색 결과가 없습니다.");
+        } else {
+            System.out.println(index + " 위치에 있습니다.");
+        }
     }
 }
