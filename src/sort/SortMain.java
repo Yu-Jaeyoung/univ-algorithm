@@ -1,5 +1,7 @@
 package sort;
 
+import sort.advanced.MergeSort;
+import sort.advanced.QuickSort;
 import sort.basic.BubbleSort;
 import sort.basic.InsertionSort;
 import sort.basic.SelectionSort;
@@ -12,7 +14,9 @@ public class SortMain {
         Integer[] intList = {8, 31, 48, 73, 3, 65, 20, 29, 11, 15};
 
 //      SelectionSort<Integer> sorter = new SelectionSort<>();
-        MySorter<Integer> sorter = new BubbleSort<>();
+//        MySorter<Integer> sorter = new BubbleSort<>();
+//        MySorter<Integer> sorter = new QuickSort<>();
+        MySorter<Integer> sorter = new MergeSort<>();
         sorter.sort(intList);
 
         print(intList);

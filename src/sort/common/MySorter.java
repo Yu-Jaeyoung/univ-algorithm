@@ -1,5 +1,5 @@
 package sort.common;
 
 public interface MySorter<E> {
-    void sort(E[] List);
+    void sort(E[] list);
 }

@@ -1,5 +1,7 @@
 package sort;
 
+import sort.advanced.MergeSort;
+import sort.advanced.QuickSort;
 import sort.basic.BubbleSort;
 import sort.basic.InsertionSort;
 import sort.basic.SelectionSort;
@@ -19,7 +21,9 @@ public class SortPerformanceTest {
         List<MySorter<Integer>> sorters = Arrays.asList(
                 new SelectionSort<>(),
                 new BubbleSort<>(),
-                new InsertionSort<>()
+                new InsertionSort<>(),
+                new QuickSort<>(),
+                new MergeSort<>()
         );
 
         for (MySorter<Integer> sorter : sorters) {
@@ -29,9 +33,8 @@ public class SortPerformanceTest {
             // MyList.print(copyList, 10);
         }
 
-
-        measureTime(new SelectionSort<>(), list);
-        measureTime(new SelectionSort<>(), list);
+//        measureTime(new QuickSort<>(), list);
+//        measureTime(new QuickSort<>(), list);
     }
 
     private static Integer[] getList() {
