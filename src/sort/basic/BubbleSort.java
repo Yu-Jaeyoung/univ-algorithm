@@ -7,12 +7,6 @@ import java.util.Comparator;
 import static sort.common.MyList.*;
 
 public class BubbleSort<E extends Comparable<E>> implements MySorter<E> {
-
-    @Override
-    public void sort(E[] list) {
-        sort(list, Comparable::compareTo);
-    }
-
     @Override
     public void sort(E[] list, Comparator<E> comparator) {
         for (int last = list.length - 1; last > 0; last--) {
