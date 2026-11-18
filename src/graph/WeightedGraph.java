@@ -82,6 +82,95 @@ public class WeightedGraph<E> {
         }
     }
 
+    void dijkstra(int start) {
+        int[] distances = new int[vertexCount];
+        Arrays.fill(distances, Integer.MAX_VALUE);
+
+        int[] previous = new int[vertexCount];
+        Arrays.fill(previous, -1);
+
+        HashSet<Integer> noVisited = new HashSet<>();
+
+        for (int i = 0; i < vertexCount; i++) {
+            noVisited.add(i);
+        }
+
+        distances[start] = 0;
+        while (!noVisited.isEmpty()) {
+            int u = extractMin(noVisited, distances);
+            noVisited.remove(u);
+            for (Vertex e : adjacentList[u].list) {
+                int v = e.v;
+                int weight = e.weight;
+
+                if (noVisited.contains(v) && distances[u] + weight < distances[v]) {
+                    distances[v] = distances[u] + weight;
+                    previous[v] = u;
+                }
+            }
+//            System.out.println(Arrays.toString(distances));
+            System.out.println(Arrays.toString(previous));
+        }
+
+        System.out.println(adjacentList[start].value + "로부터 각 정점까지의 최단 거리: ");
+        for (int i = 0; i < vertexCount; i++) {
+            System.out.print(adjacentList[i].value + "까지의 거리: " + distances[i] + " (경로: ");
+            int current = i;
+            String path = "";
+
+            while (current != -1) {
+                path = adjacentList[current].value + " " + path;
+                current = previous[current];
+            }
+            System.out.println(path + ")");
+        }
+    }
+
+    private int extractMin(HashSet<Integer> noVisited, int[] distances) {
+        int minDist = Integer.MAX_VALUE;
+        int u = -1;
+        for (int v : noVisited) {
+            if (distances[v] < minDist) {
+                minDist = distances[v];
+                u = v;
+            }
+        }
+
+        return u;
+    }
+
+    void floydWarshall() {
+        int[][] distances = new int[vertexCount][vertexCount];
+        for (int i = 0; i < vertexCount; i++) {
+            Arrays.fill(distances[i], Integer.MAX_VALUE);
+            distances[i][i] = 0;
+        }
+
+        for (int u = 0; u < vertexCount; u++) {
+            for (Vertex v : adjacentList[u].list) {
+                distances[u][v.v] = v.weight;
+            }
+        }
+
+        for (int k = 0; k < vertexCount; k++) {
+            for (int i = 0; i < vertexCount; i++) {
+                for (int j = 0; j < vertexCount; j++) {
+                    if (distances[i][k] != Integer.MAX_VALUE && distances[k][j] != Integer.MAX_VALUE) {
+                        distances[i][j] = Math.min(distances[i][j], distances[i][k] + distances[k][j]);
+                    }
+                }
+            }
+        }
+
+        System.out.println("Floyd-Warshall 최단거리 행렬:");
+        for (int i = 0; i < vertexCount; i++) {
+            for (int j = 0; j < vertexCount; j++) {
+                System.out.print(distances[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     public void primMST() {
         int[] costs = new int[vertexCount];
         Arrays.fill(costs, Integer.MAX_VALUE);
